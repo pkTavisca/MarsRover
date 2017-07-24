@@ -48,6 +48,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DiagonalRoverTester.cs" />
     <Compile Include="PlanetMarsTester.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoverTester.cs" />
