@@ -8,6 +8,10 @@ namespace MarsRover
 {
     public interface IRover
     {
+        int XCordinate { get; }
+        int YCordinate { get; }
+        Pole FacingDirection { get; }
+
         bool Move(Direction direction);
     }
 }
