@@ -8,7 +8,7 @@ namespace MarsRover
 {
     class DiagonalRover : Rover, IRover
     {
-        public DiagonalRover(PlanetMars mars, int xCordinate = 0, int yCordinate = 0, Direction direction = Direction.North) : base(mars, xCordinate, yCordinate, direction)
+        public DiagonalRover(PlanetMars mars, int xCordinate = 0, int yCordinate = 0, Pole direction = Pole.North) : base(mars, xCordinate, yCordinate, direction)
         {
         }
     }

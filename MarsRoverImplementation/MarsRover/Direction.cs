@@ -6,11 +6,19 @@ using System.Threading.Tasks;
 
 namespace MarsRover
 {
+    public enum Pole
+    {
+        North = 0,
+        West = 1,
+        South = 2,
+        East = 3
+    };
+
     public enum Direction
     {
-        North = 'N',
-        South = 'S',
-        East = 'E',
-        West = 'W'
-    };
+        Forward = 'F',
+        Back = 'B',
+        Left = 'L',
+        Right = 'R'
+    }
 }
