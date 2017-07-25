@@ -8,97 +8,22 @@ namespace MarsRover
 {
     public class Rover : IRover
     {
-        public int XCordinate { get; private set; }
-        public int YCordinate { get; private set; }
-        public Pole FacingDirection { get; private set; }
-        private PlanetMars mars;
-
-        public Rover(PlanetMars mars, int xCordinate = 0, int yCordinate = 0, Pole pole = Pole.North)
+        public void MoveForward(Compass compass, PlanetMars mars)
         {
-            XCordinate = xCordinate;
-            YCordinate = yCordinate;
-            this.mars = mars;
-            FacingDirection = pole;
+            if (mars.IsPositionInsidePlanet(compass.DirectionOfRover.MoveForward(mars.RoverPosition)))
+            {
+                mars.RoverPosition = compass.DirectionOfRover.MoveForward(mars.RoverPosition);
+            }
         }
 
-        public bool Move(Direction direction)
+        public void TurnLeft(Compass compass)
         {
-            switch (direction)
-            {
-                case Direction.Back:
-                    TurnBack();
-                    break;
-                case Direction.Left:
-                    TurnLeft();
-                    break;
-                case Direction.Right:
-                    TurnRight();
-                    break;
-            }
-            return MoveForward();
+            compass.DirectionOfRover = compass.DirectionOfRover.LeftDirection;
         }
 
-        void TurnLeft()
+        public void TurnRight(Compass compass)
         {
-            int pole = (int)FacingDirection;
-            pole += 1;
-            pole %= 4;
-            FacingDirection = (Pole)pole;
-        }
-        void TurnRight()
-        {
-            int pole = (int)FacingDirection;
-            pole += 3;
-            pole %= 4;
-            FacingDirection = (Pole)pole;
-        }
-        void TurnBack()
-        {
-            int pole = (int)FacingDirection;
-            pole += 2;
-            pole %= 4;
-            FacingDirection = (Pole)pole;
-        }
-
-        private bool MoveForward()
-        {
-            if (FacingDirection == Pole.North)
-            {
-                if (mars.IsPositionInsidePlanet(XCordinate, YCordinate - 1))
-                {
-                    YCordinate--;
-                    return true;
-                }
-                return false;
-            }
-            else if (FacingDirection == Pole.South)
-            {
-                if (mars.IsPositionInsidePlanet(XCordinate, YCordinate + 1))
-                {
-                    YCordinate++;
-                    return true;
-                }
-                return false;
-            }
-            else if (FacingDirection == Pole.West)
-            {
-                if (mars.IsPositionInsidePlanet(XCordinate - 1, YCordinate))
-                {
-                    XCordinate--;
-                    return true;
-                }
-                return false;
-            }
-            else if (FacingDirection == Pole.East)
-            {
-                if (mars.IsPositionInsidePlanet(XCordinate + 1, YCordinate))
-                {
-                    XCordinate++;
-                    return true;
-                }
-                return false;
-            }
-            return false;
+            compass.DirectionOfRover = compass.DirectionOfRover.RightDirection;
         }
     }
 }

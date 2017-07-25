@@ -8,16 +8,15 @@ namespace MarsRover
 {
     public enum Pole
     {
-        North = 0,
-        West = 1,
-        South = 2,
-        East = 3
+        North = 'N',
+        West = 'W',
+        South = 'S',
+        East = 'E'
     };
 
-    public enum Direction
+    public enum Input
     {
-        Forward = 'F',
-        Back = 'B',
+        MoveForward = 'M',
         Left = 'L',
         Right = 'R'
     }

@@ -1,28 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MarsRover
+﻿namespace MarsRover
 {
     public class PlanetMars
     {
         public int Length { get; }
         public int Breadth { get; }
 
-        public PlanetMars(int length = 10, int breadth = 10)
+        public Coordinate RoverPosition { get; set; }
+
+        public PlanetMars(Coordinate RoverPosition, int length = 10, int breadth = 10)
         {
             Length = length;
             Breadth = breadth;
+            this.RoverPosition = RoverPosition;
         }
 
-        public bool IsPositionInsidePlanet(int x, int y)
+        public bool IsPositionInsidePlanet(Coordinate position)
         {
-            bool isXPostionInsidePlanet = x < Breadth && x >= 0;
-            bool isYPostionInsidePlanet = y < Length && y >= 0;
-            if (isXPostionInsidePlanet && isYPostionInsidePlanet) return true;
-            return false;
+            return IsXPositionInsidePlanet(position) && IsYPositionInsidePlanet(position);
+        }
+
+        private bool IsXPositionInsidePlanet(Coordinate position)
+        {
+            return position.X < Breadth;
+        }
+        private bool IsYPositionInsidePlanet(Coordinate position)
+        {
+            return position.Y < Length;
         }
     }
 }

@@ -36,7 +36,7 @@ namespace PlanetMarsFixture
         {
             var mars = new PlanetMars(1, 1);
             Rover rover = new Rover(mars);
-            var roverMoved = rover.Move(Direction.Forward);
+            var roverMoved = rover.Move(Input.Forward);
             Assert.AreEqual(Pole.North, rover.FacingDirection);
             Assert.IsFalse(roverMoved);
         }
@@ -45,7 +45,7 @@ namespace PlanetMarsFixture
         public void Check_if_rover_moves_backward_from_initial_position()
         {
             Rover rover = new Rover(new PlanetMars());
-            var roverMoved = rover.Move(Direction.Back);
+            var roverMoved = rover.Move(Input.Back);
             Assert.AreEqual(Pole.South, rover.FacingDirection);
             Assert.IsTrue(roverMoved);
         }
@@ -55,8 +55,8 @@ namespace PlanetMarsFixture
         {
             Rover rover = new Rover(new PlanetMars(), 5, 5);
             int inititalY = rover.YCordinate;
-            rover.Move(Direction.Forward);
-            rover.Move(Direction.Forward);
+            rover.Move(Input.Forward);
+            rover.Move(Input.Forward);
             int finalY = rover.YCordinate;
             Assert.AreEqual(inititalY - 2, finalY);
             Assert.AreEqual(Pole.North, rover.FacingDirection);
@@ -67,8 +67,8 @@ namespace PlanetMarsFixture
         {
             Rover rover = new Rover(new PlanetMars(), 5, 5);
             int inititalY = rover.YCordinate;
-            rover.Move(Direction.Back);
-            rover.Move(Direction.Back);
+            rover.Move(Input.Back);
+            rover.Move(Input.Back);
             int finalY = rover.YCordinate;
             Assert.AreEqual(inititalY, finalY);
             Assert.AreEqual(Pole.North, rover.FacingDirection);
@@ -78,10 +78,10 @@ namespace PlanetMarsFixture
         public void Move_rover_in_all_directions_in_single_tile_planet()
         {
             Rover rover = new Rover(new PlanetMars(1, 1));
-            rover.Move(Direction.Forward);
-            rover.Move(Direction.Back);
-            rover.Move(Direction.Right);
-            rover.Move(Direction.Left);
+            rover.Move(Input.Forward);
+            rover.Move(Input.Back);
+            rover.Move(Input.Right);
+            rover.Move(Input.Left);
             Assert.IsTrue(rover.XCordinate == 0 && rover.YCordinate == 0);
             Assert.AreEqual(Pole.South, rover.FacingDirection);
         }
@@ -90,10 +90,10 @@ namespace PlanetMarsFixture
         public void Move_rover_left_4_times()
         {
             Rover rover = new Rover(new PlanetMars(), 5, 5);
-            rover.Move(Direction.Left);
-            rover.Move(Direction.Left);
-            rover.Move(Direction.Left);
-            rover.Move(Direction.Left);
+            rover.Move(Input.Left);
+            rover.Move(Input.Left);
+            rover.Move(Input.Left);
+            rover.Move(Input.Left);
             Assert.IsTrue(rover.XCordinate == 5 && rover.YCordinate == 5);
             Assert.AreEqual(Pole.North, rover.FacingDirection);
         }

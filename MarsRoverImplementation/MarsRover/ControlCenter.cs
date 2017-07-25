@@ -8,21 +8,34 @@ namespace MarsRover
 {
     public class ControlCenter
     {
+        public PlanetMars Mars { get; set; }
+        public IRover Rover { get; set; }
+        public Compass RoverCompass { get; set; }
 
-        public PlanetMars Mars { get; }
-        public IRover Rover { get; }
-
-        public ControlCenter(int planetLenth, int planetBreadth, int roverXCoordinate, int roverYCoordinate, Pole facingDirection)
+        public ControlCenter(PlanetMars Mars, IRover Rover, Compass RoverCompass)
         {
-            Mars = new PlanetMars(planetLenth, planetBreadth);
-            Rover = new Rover(Mars, roverXCoordinate, roverYCoordinate, facingDirection);
+            this.Mars = Mars;
+            this.Rover = Rover;
+            this.RoverCompass = RoverCompass;
         }
 
-        public void GiveRoverCommands(string commands)
+        public void ExecuteCommand(Input command)
+        {
+            if (command == Input.Left) Rover.TurnLeft(RoverCompass);
+            else if (command == Input.Right) Rover.TurnRight(RoverCompass);
+            else if (command == Input.MoveForward) Rover.MoveForward(RoverCompass, Mars);
+        }
+
+        public void ExecuteCommand(char command)
+        {
+            ExecuteCommand((Input)command);
+        }
+
+        public void ExecuteCommand(string commands)
         {
             foreach (var command in commands)
             {
-                Rover.Move((Direction)command);
+                ExecuteCommand(command);
             }
         }
     }
